@@ -5,15 +5,25 @@ const Home = () => {
   const [logoSize, setLogoSize] = useState<"large" | "small" | "medium">(
     "large"
   );
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setLogoSize("medium");
-    }, 1000);
+      setExpanded(true);
+    }, 300);
   }, []);
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <Logo size={logoSize} />
+    <div className="w-full h-screen flex justify-center items-center bg-[#8800ff]">
+      <div
+        className={`bg-[white] ${
+          !expanded ? "rounded-[10px]" : ""
+        } transition-all duration-1000 w-${!expanded ? "[300px]" : "full"} h-${
+          !expanded ? "[300px]" : "screen"
+        }  flex justify-center items-center flex-col `}
+      >
+        <Logo size={logoSize} />
+      </div>
     </div>
   );
 };
