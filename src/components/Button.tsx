@@ -3,26 +3,31 @@ import { Link } from "react-router-dom";
 interface IProps {
   link?: string;
   children?: React.ReactNode;
+  onClick?: (e: React.FormEvent) => void;
+  className?: string;
 }
 
-const BaseButton = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <button className="flex items-center justify-center transition-all duration-300 ease-in-out bg-gradient-to-r from-purple-500 to-indigo-500 text-white cursor-pointer font-semibold p-2 pt-4 px-8 rounded-full hover:bg-purple-600 hover:bg-indigo-600 font-[Manjari] text-xl">
-      {children}
-    </button>
-  );
-};
+export const Button = ({ link, children }: IProps) => {
+  const commonClass =
+    "flex items-center justify-center transition-colors duration-500 bg-gradient-to-r from-purple-500 to-indigo-500 text-white cursor-pointer font-semibold p-2 pt-4 px-8 rounded-full  font-[Manjari] text-xl";
 
-const Button = ({ link, children }: IProps) => {
   if (link) {
     return (
-      <Link to={link} className="">
-        <BaseButton>{children}</BaseButton>
+      <Link to={link} className="group">
+        <button
+          className={`${commonClass} group-hover:from-purple-700 group-hover:to-indigo-800`}
+        >
+          {children}
+        </button>
       </Link>
     );
   } else {
-    return <BaseButton>{children}</BaseButton>;
+    return (
+      <button
+        className={`${commonClass} hover:from-purple-700 hover:to-indigo-800`}
+      >
+        {children}
+      </button>
+    );
   }
 };
-
-export default Button;
