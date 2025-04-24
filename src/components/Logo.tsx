@@ -3,7 +3,7 @@ interface IProps {
   duration?: string;
 }
 
-const Logo = ({ size, duration = "2000" }: IProps) => {
+const Logo = ({ size, duration = "1800" }: IProps) => {
   return (
     <div
       className={`flex items-center flex-col justify-center transition-all duration-${duration} ease-in-out`}
