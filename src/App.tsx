@@ -4,7 +4,7 @@ import SignUp from "./containers/SignUp";
 
 function App() {
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="">
       <Router>
         <Routes>
           <Route path="/" element={<Home/>} />
