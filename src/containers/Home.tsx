@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Button, Logo } from "../components";
 
-import Logo from "../components/Logo";
-import Button from "../components/Button";
+
 
 const Home = () => {
   const [logoSize, setLogoSize] = useState<"large" | "small" | "medium">(
@@ -12,31 +12,34 @@ const Home = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setLogoSize("medium");
+       setLogoSize("medium");
       setExpanded(true);
-    }, 600);
+    }, 400);
   }, []);
+
   return (
     <div className="w-full flex h-screen items-center justify-center bg-gradient-to-tr from-white to-purple-300">
       <div
-        className={`flex flex-col justify-center items-center bg-gradient-to-tr from-purple-300 to-white ${
-          !expanded ? "rounded-[10px]" : ""
-        } transition-all duration-1000 w-${!expanded ? "[400px]" : "full"} h-${
-          !expanded ? "[400px]" : "screen"
-        }  p-[20px]`}
+        className="flex flex-col justify-center items-center bg-gradient-to-tr from-purple-300 to-white  
+           transition-all duration-900 bg-none"
+        style={
+          expanded
+            ? { width: "100%", height: "100%", borderRadius: "10px" }
+            : { width: "350px", height: "350px" }
+        }
       >
         <motion.div
           initial={{}}
           animate={{ top: -100 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="relative w-full mt-30 "
+          transition={{ duration: 0.6, delay: 1.6 }}
+          className="relative mt-30 "
         >
           <Logo size={logoSize} />
         </motion.div>
         <motion.div
           initial={{ top: 0, left: 0, opacity: 1 }}
-          animate={{ top: -80, opacity: 0 }}
-          transition={{ duration: 0.8, delay: 4 }}
+          animate={{ top: -50, opacity: 0 }}
+          transition={{ duration: 0.6, delay: 4 }}
           className="relative text-center mt-[-50px] "
         >
           <motion.div

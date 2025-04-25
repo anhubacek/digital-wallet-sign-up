@@ -1,12 +1,13 @@
 interface IProps {
   size: "small" | "medium" | "large";
   duration?: string;
+  className?: string;
 }
 
-const Logo = ({ size, duration = "1800" }: IProps) => {
+export const Logo = ({ size, duration = "2000", className }: IProps) => {
   return (
     <div
-      className={`flex items-center flex-col justify-center transition-all duration-${duration} ease-in-out`}
+      className={`flex items-center flex-col justify-center transition-all duration-${duration} ease-in-out ${className}`}
     >
       <img
         src="/assets/images/logo.png"
@@ -24,8 +25,8 @@ const Logo = ({ size, duration = "1800" }: IProps) => {
           size === "small"
             ? "text-3xl"
             : size === "medium"
-            ? "text-[50px]"
-            : "text-8xl mt-2"
+            ? "text-[50px] mt-[-10px]"
+            : "text-[100px] mt-[-20px] "
         }`}
       >
         MUBI
@@ -33,5 +34,3 @@ const Logo = ({ size, duration = "1800" }: IProps) => {
     </div>
   );
 };
-
-export default Logo;
