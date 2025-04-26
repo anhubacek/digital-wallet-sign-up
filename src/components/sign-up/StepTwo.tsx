@@ -20,12 +20,12 @@ export const StepTwo = ({
   setBody,
 }: StepTwoProps) => {
   return (
-    <div className="flex flex-col items-center w-full">
-      <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[100%]">
+    <div className="flex flex-col items-center w-full ">
+      <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[100%] ">
         ¡Ya falta poco! 🌟 <br /> Sólo necesitamos algunos datos para terminar
         de abrir tu cuenta.
       </h3>
-      <div className="flex w-full flex-col md:flex-row gap-4 ">
+      <div className="flex w-full flex-col md:flex-row gap-4 my-4">
         <div className=" w-full hidden md:flex flex-col">
           <Input
             onChange={handleChange}

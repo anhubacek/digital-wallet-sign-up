@@ -55,7 +55,6 @@ export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
   const handleChange = (e: any) => {
     setCurrentItem(e.target.value);
     const splittedValue = e.target.value.split(" ");
-    
     onChange({
       name: splittedValue.slice(0, splittedValue.length - 1).join(" "),
       id: splittedValue[splittedValue.length - 1],

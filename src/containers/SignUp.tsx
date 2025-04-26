@@ -57,7 +57,7 @@ const SignUp = () => {
       className={`flex flex-col items-center justify-center min-h-screen py-10 bg-gradient-to-tr from-purple-300 to-white font-[Manjari]`}
     >
       <div
-        className={`flex flex-col items-center px-6 md:px-10 py-10 rounded-2xl shadow-lg w-[90%] ${
+        className={`flex flex-col items-center px-6 md:px-10 py-8 rounded-2xl shadow-lg w-[90%] ${
           step === 2 ? "md:w-160" : "md:w-120"
         }  bg-white space-y-4`}
       >
@@ -82,6 +82,7 @@ const SignUp = () => {
             handleChange={handleInputChange}
             setStep={setStep}
             body={body}
+            setBody={setBody}
           />
         )}
       </div>

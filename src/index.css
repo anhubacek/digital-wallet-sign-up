@@ -67,3 +67,24 @@
   padding: 10px 20px !important;
 }
 
+.MuiPickersInputBase-root {
+  border: none !important;
+  outline: none !important;
+}
+
+.MuiPickersInputBase-root .MuiPickersOutlinedInput-notchedOutline {
+  outline: none !important;
+  border: none !important;
+}
+
+.MuiPickersInputBase-root .MuiPickersOutlinedInput-notchedOutline:focus {
+  border: 1px solid var(--color-yellow-500) !important;
+}
+
+.MuiPickersOutlinedInput:focus {
+  border: 1px solid var(--color-yellow-500) !important;
+}
+
+.focused-date-picker {
+  border: 1px solid var(--color-yellow-500) !important;
+}
