@@ -54,8 +54,8 @@ const SignUp = () => {
         {step === 2 && (
           <>
             <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[100%]">
-              ¡Ya estás registrado! 🌟 <br /> Sólo necesitamos algunos datos más
-              para poder abrir tu cuenta.
+              ¡Ya falta poco! 🌟 <br /> Sólo necesitamos algunos datos para
+              terminar de abrir tu cuenta.
             </h3>
             <div className="flex w-full flex-col md:flex-row gap-4 ">
               <div className="flex flex-col w-full ">
@@ -63,7 +63,7 @@ const SignUp = () => {
                 <label className="mb-1">Teléfono</label>
                 <PhoneInput
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
-                  defaultCountry="ua"
+                  defaultCountry="ar"
                   value={body.phone}
                   onChange={(phone) =>
                     setBody({
