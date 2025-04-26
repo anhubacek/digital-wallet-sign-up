@@ -1,0 +1,203 @@
+import { PhoneInput } from "react-international-phone";
+import { ISignUpBody } from "../../containers/SignUp";
+import { Button } from "../Button";
+import { Input } from "../Input";
+import { GeoLocation } from "../LocationInput";
+
+import "react-international-phone/style.css";
+
+interface StepTwoProps {
+  setStep: (step: number) => void;
+  body: ISignUpBody;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setBody: (body: ISignUpBody) => void;
+}
+
+export const StepTwo = ({
+  handleChange,
+  setStep,
+  body,
+  setBody,
+}: StepTwoProps) => {
+  return (
+    <div className="flex flex-col items-center w-full">
+      <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[100%]">
+        ¡Ya falta poco! 🌟 <br /> Sólo necesitamos algunos datos para terminar
+        de abrir tu cuenta.
+      </h3>
+      <div className="flex w-full flex-col md:flex-row gap-4 ">
+        <div className=" w-full hidden md:flex flex-col">
+          <Input
+            onChange={handleChange}
+            label="Nombre"
+            name="name"
+            value={body.name}
+          />
+          <label className="mb-1">Teléfono</label>
+          <PhoneInput
+            className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+            defaultCountry="ar"
+            value={body.phone}
+            onChange={(phone) =>
+              setBody({
+                ...body,
+                phone,
+              })
+            }
+          />
+          <Input
+            label="Código Postal"
+            name="zipCode"
+            onChange={handleChange}
+            value={body.zipCode}
+          />
+          <label className="mb-1">Provincia</label>
+          <GeoLocation
+            className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+            geoId={body.countryId}
+            onChange={({ name, id }) =>
+              setBody({
+                ...body,
+                province: name,
+                provinceId: id,
+                cityId: "",
+                city: "",
+              })
+            }
+          />
+        </div>
+        <div className="w-full hidden md:flex flex-col">
+          <Input
+            label="Apellido"
+            name="lastName"
+            onChange={handleChange}
+            value={body.lastName}
+          />
+          <Input
+            label="Dirección"
+            onChange={handleChange}
+            name="address"
+            value={body.address}
+          />
+          <label className="mb-1">País</label>
+          <GeoLocation
+            className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+            isCountry
+            onChange={({ name, id }) =>
+              setBody({
+                ...body,
+                country: name,
+                countryId: id,
+                provinceId: "",
+                province: "",
+                cityId: "",
+                city: "",
+              })
+            }
+            value={body.country}
+          />
+          <label className="mb-1">Ciudad</label>
+          <GeoLocation
+            className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+            geoId={body.provinceId}
+            onChange={({ name, id }) =>
+              setBody({
+                ...body,
+                city: name,
+                cityId: id,
+              })
+            }
+          />
+        </div>
+        <div className="w-full flex flex-col md:hidden ">
+          <Input
+            label="Nombre"
+            onChange={handleChange}
+            name="name"
+            value={body.name}
+          />
+          <Input
+            label="Apellido"
+            name="lastName"
+            onChange={handleChange}
+            value={body.lastName}
+          />
+          <label className="mb-1">Teléfono</label>
+          <PhoneInput
+            className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+            defaultCountry="ar"
+            value={body.phone}
+            onChange={(phone) =>
+              setBody({
+                ...body,
+                phone,
+              })
+            }
+          />
+
+          <Input
+            label="Dirección"
+            onChange={handleChange}
+            name="address"
+            value={body.address}
+          />
+          <Input
+            label="Código Postal"
+            onChange={handleChange}
+            name="zipCode"
+            value={body.zipCode}
+          />
+          <label className="mb-1">País</label>
+          <GeoLocation
+            className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+            isCountry
+            onChange={({ name, id }) =>
+              setBody({
+                ...body,
+                country: name,
+                countryId: id,
+                provinceId: "",
+                province: "",
+                city: "",
+                cityId: "",
+              })
+            }
+          />
+          <label className="mb-1">Provincia</label>
+          <GeoLocation
+            className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+            geoId={body.countryId}
+            onChange={({ name, id }) =>
+              setBody({
+                ...body,
+                province: name,
+                provinceId: id,
+                cityId: "",
+                city: "",
+              })
+            }
+          />
+          <label className="mb-1">Ciudad</label>
+          <GeoLocation
+            className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+            geoId={body.provinceId}
+            onChange={({ name, id }) =>
+              setBody({
+                ...body,
+                city: name,
+                cityId: id,
+              })
+            }
+          />
+        </div>
+      </div>
+
+      <Button
+        onClick={() => setStep(3)}
+        className="w-full py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600"
+      >
+        Continuar
+      </Button>
+    </div>
+  );
+};
