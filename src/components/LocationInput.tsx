@@ -13,8 +13,9 @@ const geonames = new (Geonames as any)({
 interface IProps {
   geoId?: string;
   isCountry?: boolean;
-  onChange: (value: string) => void;
+  onChange: ({ name, id }: { name: string; id: string }) => void;
   className?: string;
+  value?: string;
 }
 
 export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
@@ -52,8 +53,13 @@ export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
   }, [geoId, isCountry]);
 
   const handleChange = (e: any) => {
-    setCurrentItem(e.target.value as string);
-    onChange(e.target.value as string);
+    setCurrentItem(e.target.value);
+    const splittedValue = e.target.value.split(" ");
+    
+    onChange({
+      name: splittedValue.slice(0, splittedValue.length - 1).join(" "),
+      id: splittedValue[splittedValue.length - 1],
+    });
   };
 
   return (
@@ -83,12 +89,19 @@ export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
       }}
     >
       {loading ? (
-        <>Cargando..</>
+        <MenuItem>Cargando..</MenuItem>
       ) : (
         options.map(
           (value, index) =>
             value && (
-              <MenuItem key={index} value={value.geonameId}>
+              <MenuItem
+                key={index}
+                value={
+                  isCountry
+                    ? value.countryName + " " + value.geonameId.toString()
+                    : value.name + " " + value.geonameId.toString()
+                }
+              >
                 {isCountry ? value.countryName : value.name}
               </MenuItem>
             )

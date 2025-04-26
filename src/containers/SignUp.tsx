@@ -6,19 +6,31 @@ const SignUp = () => {
   const [step, setStep] = useState(1);
   const [body, setBody] = useState({
     email: "",
-    userName: "",
     name: "",
     lastName: "",
     phone: "",
     address: "",
+    zipCode: "",
     city: "",
     province: "",
     country: "",
     dateOfBirth: "",
     governmentId: "",
     password: "",
-    confirmPassword: "",
+    countryId: "",
+    provinceId: "",
+    cityId: "",
   });
+
+  console.log("body", body);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setBody((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   return (
     <div
@@ -39,9 +51,14 @@ const SignUp = () => {
             </h3>
             <div className="flex flex-col w-full space-y-2">
               <label className="mb-1">Correo electrónico</label>
-              <Input />
+              <Input name="email" onChange={handleInputChange} />
               <label className="mb-1">Contraseña</label>
-              <Input type="password" />
+              <Input
+                name="password"
+                onChange={handleInputChange}
+                type="password"
+                value={body.password}
+              />
             </div>
             <Button
               onClick={() => setStep(2)}
@@ -59,7 +76,12 @@ const SignUp = () => {
             </h3>
             <div className="flex w-full flex-col md:flex-row gap-4 ">
               <div className=" w-full hidden md:flex flex-col">
-                <Input label="Nombre" />
+                <Input
+                  onChange={handleInputChange}
+                  label="Nombre"
+                  name="name"
+                  value={body.name}
+                />
                 <label className="mb-1">Teléfono</label>
                 <PhoneInput
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
@@ -72,48 +94,83 @@ const SignUp = () => {
                     })
                   }
                 />
-                <Input label="Código Postal" />
+                <Input
+                  label="Código Postal"
+                  name="zipCode"
+                  onChange={handleInputChange}
+                  value={body.zipCode}
+                />
                 <label className="mb-1">Provincia</label>
                 <GeoLocation
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
-                  geoId={body.country}
-                  onChange={(value) =>
+                  geoId={body.countryId}
+                  onChange={({ name, id }) =>
                     setBody({
                       ...body,
-                      province: value,
+                      province: name,
+                      provinceId: id,
+                      cityId: "",
+                      city: "",
                     })
                   }
                 />
               </div>
               <div className="w-full hidden md:flex flex-col">
-                <Input label="Apellido" />
-                <Input label="Dirección" />
+                <Input
+                  label="Apellido"
+                  name="lastName"
+                  onChange={handleInputChange}
+                  value={body.lastName}
+                />
+                <Input
+                  label="Dirección"
+                  onChange={handleInputChange}
+                  name="address"
+                  value={body.address}
+                />
                 <label className="mb-1">País</label>
                 <GeoLocation
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
                   isCountry
-                  onChange={(value) =>
+                  onChange={({ name, id }) =>
                     setBody({
                       ...body,
-                      country: value,
+                      country: name,
+                      countryId: id,
+                      provinceId: "",
+                      province: "",
+                      cityId: "",
+                      city: "",
                     })
                   }
+                  value={body.country}
                 />
                 <label className="mb-1">Ciudad</label>
                 <GeoLocation
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
-                  geoId={body.city}
-                  onChange={(value) =>
+                  geoId={body.provinceId}
+                  onChange={({ name, id }) =>
                     setBody({
                       ...body,
-                      city: value,
+                      city: name,
+                      cityId: id,
                     })
                   }
                 />
               </div>
               <div className="w-full flex flex-col md:hidden ">
-                <Input label="Nombre" />
-                <Input label="Apellido" />
+                <Input
+                  label="Nombre"
+                  onChange={handleInputChange}
+                  name="name"
+                  value={body.name}
+                />
+                <Input
+                  label="Apellido"
+                  name="lastName"
+                  onChange={handleInputChange}
+                  value={body.lastName}
+                />
                 <label className="mb-1">Teléfono</label>
                 <PhoneInput
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
@@ -127,38 +184,57 @@ const SignUp = () => {
                   }
                 />
 
-                <Input label="Dirección" />
-                <Input label="Código Postal" />
+                <Input
+                  label="Dirección"
+                  onChange={handleInputChange}
+                  name="address"
+                  value={body.address}
+                />
+                <Input
+                  label="Código Postal"
+                  onChange={handleInputChange}
+                  name="zipCode"
+                  value={body.zipCode}
+                />
                 <label className="mb-1">País</label>
                 <GeoLocation
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
                   isCountry
-                  onChange={(value) =>
+                  onChange={({ name, id }) =>
                     setBody({
                       ...body,
-                      city: value,
+                      country: name,
+                      countryId: id,
+                      provinceId: "",
+                      province: "",
+                      city: "",
+                      cityId: "",
                     })
                   }
                 />
                 <label className="mb-1">Provincia</label>
                 <GeoLocation
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
-                  geoId={body.country}
-                  onChange={(value) =>
+                  geoId={body.countryId}
+                  onChange={({ name, id }) =>
                     setBody({
                       ...body,
-                      province: value,
+                      province: name,
+                      provinceId: id,
+                      cityId: "",
+                      city: "",
                     })
                   }
                 />
                 <label className="mb-1">Ciudad</label>
                 <GeoLocation
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
-                  geoId={body.city}
-                  onChange={(value) =>
+                  geoId={body.provinceId}
+                  onChange={({ name, id }) =>
                     setBody({
                       ...body,
-                      city: value,
+                      city: name,
+                      cityId: id,
                     })
                   }
                 />
