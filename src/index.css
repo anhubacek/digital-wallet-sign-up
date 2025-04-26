@@ -30,3 +30,15 @@
     background-color: #141414;
   }
 } */
+
+
+.react-international-phone-input, .react-international-phone-country-selector-button {
+  border: none !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  color: inherit !important;
+}
+.react-international-phone-input{
+  padding: 0 !important;
+  margin: 0 !important;
+}
