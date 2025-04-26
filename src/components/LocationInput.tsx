@@ -13,12 +13,13 @@ const geonames = new (Geonames as any)({
 interface IProps {
   geoId?: string;
   isCountry?: boolean;
+  isCity?: boolean;
   onChange: ({ name, id }: { name: string; id: string }) => void;
   className?: string;
   value?: string;
 }
 
-export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
+export const GeoLocation = ({ geoId, onChange, isCountry, isCity }: IProps) => {
   const [options, setOptions] = useState<
     [{ geonameId: string; countryName?: string; name?: string }] | []
   >([]);
@@ -89,12 +90,17 @@ export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
     >
       {loading ? (
         <MenuItem>Cargando..</MenuItem>
+      ) : !loading && !options.length ? (
+        <span className="px-3 text-[#4d4d4d] font-[Manjari]">
+          {isCity ?'Primero elige una provincia' : 'Primero elige un país'}
+        </span>
       ) : (
         options.map(
           (value, index) =>
             value && (
               <MenuItem
                 key={index}
+                className="font-[Manjari] text-[#4d4d4d]"
                 value={
                   isCountry
                     ? value.countryName + " " + value.geonameId.toString()

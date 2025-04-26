@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { ISignUpBody } from "../../containers/SignUp";
 import { Button } from "../Button";
 import { Input } from "../Input";
+import { governmentIdsByCountry } from "../../data/data";
 
 interface StepThreeProps {
   setStep: (step: number) => void;
@@ -12,24 +13,6 @@ interface StepThreeProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setBody: (body: ISignUpBody) => void;
 }
-
-const governmentIdsByCountry = [
-  { name: "Argentina", id: "DNI", length: 8 },
-  { name: "Paraguay", id: "Cédula de identidad", length: 6 },
-  { name: "Brasil", id: "CPF", length: 11 },
-  { name: "Brasil", id: "Registro Geral (RG)", length: 9 },
-  { name: "Chile", id: "RUN", length: 9 },
-  { name: "Chile", id: "RUT", length: 9 },
-  { name: "Colombia", id: "Cédula de ciudadanía", length: 10 },
-  { name: "Perú", id: "DNI", length: 8 },
-  { name: "México", id: "CURP", length: 18 },
-  { name: "México", id: "INE", length: 13 },
-  { name: "Venezuela", id: "Cédula de identidad", length: 8 },
-  { name: "España", id: "DNI", length: 9 },
-  { name: "Estados Unidos", id: "Social Security Number (SSN)", length: 9 },
-  { name: "Bolivia", id: "Cédula de identidad", length: 7 },
-  { name: "Ecuador", id: "Cédula de identidad", length: 10 },
-];
 
 export const StepThree = ({
   handleChange,
@@ -85,7 +68,7 @@ export const StepThree = ({
       <div className="flex flex-col w-full space-y-2 my-4">
         <label className="mb-1">Fecha de nacimiento</label>
         <div
-          className={` mb-2 py-1 px-2 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none
+          className={` mb-2 py-[1px] px-2 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none
              ${
                focused ? "focused-date-picker" : "date-picker"
              } focus:border-transparent `}
@@ -113,7 +96,19 @@ export const StepThree = ({
         </label>
         <Input
           name="governmentId"
-          onChange={handleChange}
+          onChange={(e) => {
+            const regex =
+              governmentIdsByCountry.find((doc) => doc.name === body.country)
+                ?.regex || /^[0-9]+$/;
+            console.log(regex);
+            console.log(e.target.value);
+            if (!regex?.test(e.target.value)) {
+              e.preventDefault();
+              return;
+            }
+
+            handleChange(e);
+          }}
           value={body.governmentId}
           maxLength={
             governmentIdsByCountry.find((doc) => doc.name === body.country)
