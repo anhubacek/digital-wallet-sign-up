@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Input, Logo } from "../components";
+import { Button, GeoLocation, Input, Logo } from "../components";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 const SignUp = () => {
@@ -19,7 +19,6 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
-
 
   return (
     <div
@@ -61,7 +60,7 @@ const SignUp = () => {
             <div className="flex w-full flex-col md:flex-row gap-4 ">
               <div className="flex flex-col w-full ">
                 <Input label="Nombre" />
-                <label>Teléfono</label>
+                <label className="mb-1">Teléfono</label>
                 <PhoneInput
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
                   defaultCountry="ua"
@@ -74,7 +73,17 @@ const SignUp = () => {
                   }
                 />
                 <Input label="Código Postal" />
-                <Input label="Celular" />
+                <label className="mb-1">País</label>
+                <GeoLocation
+                  className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+                  isCountry
+                  onChange={(value) =>
+                    setBody({
+                      ...body,
+                      country: value,
+                    })
+                  }
+                />
               </div>
               <div className="flex flex-col w-full ">
                 <Input label="Apellido" />

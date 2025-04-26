@@ -31,14 +31,39 @@
   }
 } */
 
-
-.react-international-phone-input, .react-international-phone-country-selector-button {
+.react-international-phone-input,
+.react-international-phone-country-selector-button {
   border: none !important;
   font-family: inherit !important;
   font-size: inherit !important;
   color: inherit !important;
 }
-.react-international-phone-input{
+.react-international-phone-input {
   padding: 0 !important;
   margin: 0 !important;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d3d3d3;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b0b0b0;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.MuiSelect-select {
+  color: #4d4d4d !important;
+  padding: 10px 20px !important;
+}
+
