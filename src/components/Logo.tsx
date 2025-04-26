@@ -12,7 +12,7 @@ export const Logo = ({ size, duration = "2000", className }: IProps) => {
       <img
         src="/assets/images/logo.png"
         alt="MUBI Logo"
-        className={`transition-all duration-${duration} ease-in-out object-contain ${
+        className={`transition-all duration-${duration} ${
           size === "small"
             ? "w-14 h-14"
             : size === "medium"

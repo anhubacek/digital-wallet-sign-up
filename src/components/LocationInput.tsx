@@ -12,7 +12,7 @@ const geonames = new (Geonames as any)({
 
 interface IProps {
   geoId?: string;
-  isCountry: boolean;
+  isCountry?: boolean;
   onChange: (value: string) => void;
   className?: string;
 }
@@ -22,19 +22,30 @@ export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
     [{ geonameId: string; countryName?: string; name?: string }] | []
   >([]);
   const [currentItem, setCurrentItem] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const getData = async () => {
+    setLoading(true);
+    try {
+      if (isCountry) {
+        const res = await geonames.countryInfo({});
+        setOptions(res.geonames);
+      } else {
+        const res = await geonames.children({ geonameId: geoId });
+        if (res.totalResultsCount) {
+          setOptions(res.geonames);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     try {
-      const data = async () => {
-        isCountry
-          ? geonames.countryInfo({}).then((res: any) => {
-              setOptions(res.geonames);
-            })
-          : geonames.children({ geonameId: geoId }).then((res: any) => {
-              if (res.totalResultsCount) setOptions(res.geonames);
-            });
-      };
-      data();
+      getData();
     } catch (err) {
       console.error(err);
     }
@@ -52,6 +63,8 @@ export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
       sx={{
         borderRadius: "30px",
         height: "38px",
+        marginBottom: "12px",
+        marginTop: "4px",
         "& .MuiOutlinedInput-notchedOutline": {
           border: "none",
           outline: "1px solid var(--color-gray-300)",
@@ -69,13 +82,17 @@ export const GeoLocation = ({ geoId, onChange, isCountry }: IProps) => {
         },
       }}
     >
-      {options.map(
-        (value, index) =>
-          value && (
-            <MenuItem key={index} value={value.geonameId}>
-              {isCountry ? value.countryName : value.name}
-            </MenuItem>
-          )
+      {loading ? (
+        <>Cargando..</>
+      ) : (
+        options.map(
+          (value, index) =>
+            value && (
+              <MenuItem key={index} value={value.geonameId}>
+                {isCountry ? value.countryName : value.name}
+              </MenuItem>
+            )
+        )
       )}
     </Select>
   );

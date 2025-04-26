@@ -58,7 +58,7 @@ const SignUp = () => {
               terminar de abrir tu cuenta.
             </h3>
             <div className="flex w-full flex-col md:flex-row gap-4 ">
-              <div className="flex flex-col w-full ">
+              <div className=" w-full hidden md:flex flex-col">
                 <Input label="Nombre" />
                 <label className="mb-1">Teléfono</label>
                 <PhoneInput
@@ -73,6 +73,21 @@ const SignUp = () => {
                   }
                 />
                 <Input label="Código Postal" />
+                <label className="mb-1">Provincia</label>
+                <GeoLocation
+                  className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+                  geoId={body.country}
+                  onChange={(value) =>
+                    setBody({
+                      ...body,
+                      province: value,
+                    })
+                  }
+                />
+              </div>
+              <div className="w-full hidden md:flex flex-col">
+                <Input label="Apellido" />
+                <Input label="Dirección" />
                 <label className="mb-1">País</label>
                 <GeoLocation
                   className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
@@ -84,12 +99,69 @@ const SignUp = () => {
                     })
                   }
                 />
+                <label className="mb-1">Ciudad</label>
+                <GeoLocation
+                  className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+                  geoId={body.city}
+                  onChange={(value) =>
+                    setBody({
+                      ...body,
+                      city: value,
+                    })
+                  }
+                />
               </div>
-              <div className="flex flex-col w-full ">
+              <div className="w-full flex flex-col md:hidden ">
+                <Input label="Nombre" />
                 <Input label="Apellido" />
+                <label className="mb-1">Teléfono</label>
+                <PhoneInput
+                  className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+                  defaultCountry="ar"
+                  value={body.phone}
+                  onChange={(phone) =>
+                    setBody({
+                      ...body,
+                      phone,
+                    })
+                  }
+                />
+
                 <Input label="Dirección" />
-                <Input label="Ciudad" />
-                <Input label="Provincia" />
+                <Input label="Código Postal" />
+                <label className="mb-1">País</label>
+                <GeoLocation
+                  className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+                  isCountry
+                  onChange={(value) =>
+                    setBody({
+                      ...body,
+                      city: value,
+                    })
+                  }
+                />
+                <label className="mb-1">Provincia</label>
+                <GeoLocation
+                  className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+                  geoId={body.country}
+                  onChange={(value) =>
+                    setBody({
+                      ...body,
+                      province: value,
+                    })
+                  }
+                />
+                <label className="mb-1">Ciudad</label>
+                <GeoLocation
+                  className="mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent "
+                  geoId={body.city}
+                  onChange={(value) =>
+                    setBody({
+                      ...body,
+                      city: value,
+                    })
+                  }
+                />
               </div>
             </div>
 
