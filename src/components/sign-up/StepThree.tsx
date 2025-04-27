@@ -12,6 +12,8 @@ interface StepThreeProps {
   body: ISignUpBody;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setBody: (body: ISignUpBody) => void;
+  fieldsWithErrors: string[];
+  setFieldsWithErrors: (fields: string[]) => void;
 }
 
 export const StepThree = ({
@@ -19,6 +21,8 @@ export const StepThree = ({
   setStep,
   body,
   setBody,
+  fieldsWithErrors,
+  setFieldsWithErrors,
 }: StepThreeProps) => {
   const today = new Date();
   const eighteenYearsAgo = new Date(
@@ -40,6 +44,11 @@ export const StepThree = ({
       ...body,
       dateOfBirth: formattedDate,
     });
+  };
+
+  const handleSubmit = () => {
+    setFieldsWithErrors([]);
+    setStep(4);
   };
 
   useEffect(() => {
@@ -114,10 +123,11 @@ export const StepThree = ({
             governmentIdsByCountry.find((doc) => doc.name === body.country)
               ?.length || 18
           }
+          fieldsWithErrors={fieldsWithErrors}
         />
       </div>
       <Button
-        onClick={() => setStep(4)}
+        onClick={handleSubmit}
         className="w-full py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 "
       >
         Completar registro

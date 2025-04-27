@@ -90,7 +90,6 @@ const SignUp = () => {
             handleChange={handleInputChange}
             setStep={setStep}
             fieldsWithErrors={fieldsWithErrors}
-            setFieldsWithErrors={setFieldsWithErrors}
           />
         )}
         {step === 3 && (

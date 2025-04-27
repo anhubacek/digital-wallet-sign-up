@@ -11,6 +11,7 @@ interface StepTwoProps {
   body: ISignUpBody;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setBody: (body: ISignUpBody) => void;
+  fieldsWithErrors: string[];
 }
 
 export const StepTwo = ({
@@ -18,7 +19,9 @@ export const StepTwo = ({
   setStep,
   body,
   setBody,
+  fieldsWithErrors,
 }: StepTwoProps) => {
+
   return (
     <div className="flex flex-col items-center w-full ">
       <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[100%] ">
@@ -32,6 +35,7 @@ export const StepTwo = ({
             label="Nombre"
             name="name"
             value={body.name}
+            fieldsWithErrors={fieldsWithErrors}
           />
           <label className="mb-1">Teléfono</label>
           <PhoneInput
@@ -50,6 +54,7 @@ export const StepTwo = ({
             name="zipCode"
             onChange={handleChange}
             value={body.zipCode}
+            fieldsWithErrors={fieldsWithErrors}
           />
           <label className="mb-1">Provincia</label>
           <GeoLocation
@@ -72,12 +77,14 @@ export const StepTwo = ({
             name="lastName"
             onChange={handleChange}
             value={body.lastName}
+            fieldsWithErrors={fieldsWithErrors}
           />
           <Input
             label="Dirección"
             onChange={handleChange}
             name="address"
             value={body.address}
+            fieldsWithErrors={fieldsWithErrors}
           />
           <label className="mb-1">País</label>
           <GeoLocation
@@ -116,12 +123,14 @@ export const StepTwo = ({
             onChange={handleChange}
             name="name"
             value={body.name}
+            fieldsWithErrors={fieldsWithErrors}
           />
           <Input
             label="Apellido"
             name="lastName"
             onChange={handleChange}
             value={body.lastName}
+            fieldsWithErrors={fieldsWithErrors}
           />
           <label className="mb-1">Teléfono</label>
           <PhoneInput
@@ -141,12 +150,14 @@ export const StepTwo = ({
             onChange={handleChange}
             name="address"
             value={body.address}
+            fieldsWithErrors={fieldsWithErrors}
           />
           <Input
             label="Código Postal"
             onChange={handleChange}
             name="zipCode"
             value={body.zipCode}
+            fieldsWithErrors={fieldsWithErrors}
           />
           <label className="mb-1">País</label>
           <GeoLocation
