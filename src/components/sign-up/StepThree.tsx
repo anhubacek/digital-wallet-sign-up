@@ -77,7 +77,7 @@ export const StepThree = ({
       <div className="flex flex-col w-full space-y-2 my-4">
         <label className="mb-1">Fecha de nacimiento</label>
         <div
-          className={` mb-2 py-[1px] px-2 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none
+          className={` mb-4 py-[1px] px-2 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none
              ${
                focused ? "focused-date-picker" : "date-picker"
              } focus:border-transparent `}
@@ -109,8 +109,6 @@ export const StepThree = ({
             const regex =
               governmentIdsByCountry.find((doc) => doc.name === body.country)
                 ?.regex || /^[0-9]+$/;
-            console.log(regex);
-            console.log(e.target.value);
             if (!regex?.test(e.target.value)) {
               e.preventDefault();
               return;
