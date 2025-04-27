@@ -3,7 +3,8 @@ import { ISignUpBody } from "../containers/SignUp";
 
 export const emailRegex = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
 
-export const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+export const passwordRegex =
+  /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 // at least 8 characters long.
 // at least one uppercase letter.
 // at least one lowercase letter.
@@ -33,16 +34,21 @@ export const validateNonEmptyFields = (obj: Partial<ISignUpBody>) => {
   );
 };
 
-
 export const getEmptyFields = (obj: Partial<ISignUpBody>): string[] => {
-    return Object.entries(obj)
-        .filter(([key, value]) => {
-            if (key === "phone" && typeof value === "string" && value.length < 8) {
-                return true;
-            }
-            return typeof value === "string"
-                ? value.trim() === ""
-                : value === null || value === undefined;
-        })
-        .map(([key]) => key);
+  return Object.entries(obj)
+    .filter(([key, value]) => {
+      if (key === "phone" && value.length < 8) {
+        return true;
+      }
+      if (
+        key === "dateOfBirth" &&
+        (value.includes("Nan") || value.includes("undefined"))
+      ) {
+        return true;
+      }
+      return typeof value === "string"
+        ? value.trim() === ""
+        : value === null || value === undefined;
+    })
+    .map(([key]) => key);
 };
