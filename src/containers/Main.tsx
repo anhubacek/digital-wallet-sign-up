@@ -1,10 +1,14 @@
-import { motion } from "framer-motion";
-import { Logo } from "../components";
-import { navbarItems } from "../data/data";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
+import { Logo } from "../components";
+
+import { navbarItems } from "../data/data";
 
 const Main = () => {
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -50,7 +54,7 @@ const Main = () => {
             <header className="w-full h-[12vh]  flex items-center justify-between px-4 py-2">
               <div className="hidden md:flex"></div>
               <div className="flex md:hidden scale-75 mt-4 ">
-                <h1 className="font-[Manjari] font-bold bg-gradient-to-r from-[#bd00ff] to-[#8800ff] text-transparent bg-clip-text transition-all duration-ease-in-out text-3xl">
+                <h1 className="font-[Manjari] font-bold bg-gradient-to-r from-[#bd00ff] to-[#8800ff] text-transparent bg-clip-text text-3xl">
                   MUBI
                 </h1>
               </div>
@@ -59,12 +63,66 @@ const Main = () => {
                   src="/assets/images/user.png"
                   alt="user"
                   className="w-[40px] h-[40px] md:w-[60px] rounded-full md:h-[60px] object-cover shadow-lg"
+                  onClick={() => setMobileMenuOpen(true)}
                 />
               </div>
             </header>
-            <main className="h-[88vh]"></main>
+            <main className="h-[88vh] px-6">
+              <div>
+                <h1 className="font-[Arial] text-xl md:text-3xl font-bold text-center mt-10">
+                  Bienvenido a{" "}
+                  <span className="font-[Manjari] font-bold text-2xl md:text-4xl ">
+                    MUBI
+                  </span>
+                  <span className="ml-1">🌟</span>
+                </h1>
+                <p className=" text-md md:text-lg text-center mt-2 md:mt-4 font-[Manjari] ">
+                  Administra tus finanzas de manera fácil y segura.
+                </p>
+              </div>
+            </main>
           </div>
         </div>
+        {mobileMenuOpen && (
+          <div
+            className="fixed top-0 right-0 w-[60%] h-screen z-50 flex items-center flex-col justify-center bg-gradient-to-l 
+        from-purple-100 to-purple-100 "
+          >
+            <ul className=" w-full p-6 flex flex-col justify-between h-full mt-20">
+              <div className="space-y-4">
+                {navbarItems.map((item) => (
+                  <li
+                    key={item.en}
+                    className="text-md  hover:text-purple-600"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.es}
+                  </li>
+                ))}
+              </div>
+              <div className="flex items-end justify-between w-full mt-10">
+                <li
+                  className="text-md cursor-pointer hover:text-purple-600"
+                  onClick={handleLogout}
+                >
+                  Cerrar sesión
+                </li>
+                <img
+                  src="/assets/images/user.png"
+                  alt="user"
+                  className="w-[40px] h-[40px] md:w-[60px] rounded-full md:h-[60px] object-cover shadow-lg"
+                  onClick={() => setMobileMenuOpen(true)}
+                />
+              </div>
+            </ul>
+            <button
+              className="absolute top-6 right-6 text-gray-800 scale-y-150 scale-x-200 "
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              X
+            </button>
+          </div>
+        )}
       </motion.div>
     </div>
   );

@@ -65,7 +65,7 @@ const Home = () => {
           transition={{ duration: 0.6, delay: 5 }}
           className="relative font-[Manjari] text-xl"
         >
-          <Button link="/sign-up">Crear una cuenta</Button>
+          <Button link="/sign-up" >Crear una cuenta</Button>
         </motion.div>
       </div>
     </div>
