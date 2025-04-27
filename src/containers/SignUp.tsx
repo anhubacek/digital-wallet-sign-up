@@ -43,6 +43,7 @@ const SignUp = () => {
     provinceId: "",
     cityId: "",
   });
+  const [fieldsWithErrors, setFieldsWithErrors] = useState<string[]>([]);
 
   //  console.log("body", body);
 
@@ -53,6 +54,9 @@ const SignUp = () => {
   }, [step]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldsWithErrors((prevState) =>
+      prevState.filter((field) => field !== e.target.name)
+    );
     const { name, value } = e.target;
     setBody((prevState) => ({
       ...prevState,
@@ -75,6 +79,8 @@ const SignUp = () => {
             handleChange={handleInputChange}
             setStep={setStep}
             body={body}
+            fieldsWithErrors={fieldsWithErrors}
+            setFieldsWithErrors={setFieldsWithErrors}
           />
         )}
         {step === 2 && (
@@ -83,6 +89,8 @@ const SignUp = () => {
             setBody={setBody}
             handleChange={handleInputChange}
             setStep={setStep}
+            fieldsWithErrors={fieldsWithErrors}
+            setFieldsWithErrors={setFieldsWithErrors}
           />
         )}
         {step === 3 && (
@@ -91,6 +99,8 @@ const SignUp = () => {
             setStep={setStep}
             body={body}
             setBody={setBody}
+            fieldsWithErrors={fieldsWithErrors}
+            setFieldsWithErrors={setFieldsWithErrors}
           />
         )}
       </div>
