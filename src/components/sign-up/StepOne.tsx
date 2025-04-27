@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { ISignUpBody } from "../../containers/SignUp";
+
+import { Button } from "../Button";
+import { Input } from "../Input";
+import { Loader } from "../Loader";
+
 import {
   validateEmail,
   validateNonEmptyFields,
   validatePassword,
 } from "../../utils/validations";
-import { Button } from "../Button";
-import { Input } from "../Input";
 
 interface StepOneProps {
   setStep: (step: number) => void;
@@ -24,6 +27,7 @@ export const StepOne = ({
   setFieldsWithErrors,
 }: StepOneProps) => {
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleNextStep = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -53,46 +57,64 @@ export const StepOne = ({
     }
     if (validateEmail(body.email) && validatePassword(body.password)) {
       setError(null);
-      setStep(2);
       setFieldsWithErrors([]);
+      setIsLoading(true);
+      setTimeout(() => {
+        setStep(2);
+        setIsLoading(false);
+      }, 900);
     }
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[80%]">
+    <div className="flex flex-col items-center w-full min-h-[320px]">
+      <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[80%] ">
         Estás a un paso de hacer tu vida más simple con{" "}
         <span className="text-yellow-500"> MUBI</span>🌟
         {/* 🌟 */}
       </h3>
-      <div className="flex flex-col w-full space-y-2 my-4">
-        <label className="mb-1">Correo electrónico</label>
-        <Input
-          name="email"
-          onChange={handleChange}
-          value={body.email}
-          fieldsWithErrors={fieldsWithErrors}
-        />
-        <label className="mb-1">Contraseña</label>
-        <Input
-          name="password"
-          onChange={handleChange}
-          type="password"
-          value={body.password}
-          fieldsWithErrors={fieldsWithErrors}
-        />
-      </div>
-      {error && (
-        <p className="text-gray-500 text-sm mb-3 text-center w-[90%]">
-          {error}
-        </p>
+      {isLoading ? (
+        <div className="flex flex-col w-full space-y-2 my-4 py-10">
+          <Loader />
+        </div>
+      ) : (
+        <>
+          <div className="flex flex-col w-full space-y-2 my-4">
+            <label className="mb-1">Correo electrónico</label>
+            <Input
+              name="email"
+              onChange={(e) => {
+                setError(null);
+                handleChange(e);
+              }}
+              value={body.email}
+              fieldsWithErrors={fieldsWithErrors}
+            />
+            <label className="mb-1">Contraseña</label>
+            <Input
+              name="password"
+              onChange={(e) => {
+                setError(null);
+                handleChange(e);
+              }}
+              type="password"
+              value={body.password}
+              fieldsWithErrors={fieldsWithErrors}
+            />
+          </div>
+          {error && (
+            <p className="text-red-500 text-sm mb-3 text-center w-[90%]">
+              {error}
+            </p>
+          )}
+          <Button
+            onClick={handleNextStep}
+            className="w-full py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 "
+          >
+            Continuar
+          </Button>
+        </>
       )}
-      <Button
-        onClick={handleNextStep}
-        className="w-full py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 "
-      >
-        Continuar
-      </Button>
     </div>
   );
 };
