@@ -55,7 +55,7 @@ export const StepOne = ({
     }
     if (validateEmail(body.email) && !validatePassword(body.password)) {
       setError(
-        "La contraseña debe tener al menos 8 caracteres, una letra y un número"
+        "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial"
       );
       setFieldsWithErrors([...fieldsWithErrors, "password"]);
       return;
@@ -108,7 +108,7 @@ export const StepOne = ({
             />
           </div>
           {error && (
-            <p className="text-red-500 text-sm mb-3 text-center w-[90%]">
+            <p className="text-red-500 text-sm mb-3 text-center w-[100%]">
               {error}
             </p>
           )}

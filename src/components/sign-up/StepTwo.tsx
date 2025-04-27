@@ -256,7 +256,9 @@ export const StepTwo = ({
         </div>
       </div>
       {error && (
-        <p className="text-red-500 text-sm mb-3 text-center w-[90%]">{error}</p>
+        <p className="text-red-500 text-sm mb-3 text-center w-[100%]">
+          {error}
+        </p>
       )}
       <Button
         onClick={handleNextStep}

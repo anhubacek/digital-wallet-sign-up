@@ -3,11 +3,12 @@ import { ISignUpBody } from "../containers/SignUp";
 
 export const emailRegex = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
 
-export const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+export const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 // at least 8 characters long.
-// at least one letter.
+// at least one uppercase letter.
+// at least one lowercase letter.
 // at least one digit.
-// special characters (`@$!%*?&`)
+// at least one special character (`@$!%*?&`)
 
 export const validateEmail = (value: string) => {
   return emailRegex.test(value);
