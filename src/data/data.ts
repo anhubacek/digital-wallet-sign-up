@@ -50,3 +50,32 @@ export const governmentIdsByCountry = [
     regex: /^[0-9]{1,10}$/,
   },
 ];
+
+export const navbarItems = [
+  {
+    es: "Inicio",
+    en: "Home",
+  },
+  {
+    es: "Actividad",
+    en: "Activity",
+  },
+  {
+    es: "Inversiones",
+    en: "Investments",
+  },
+  {
+    es: "Perfil",
+    en: "Profile",
+  },
+
+  {
+    es: "Configuración",
+    en: "Settings",
+  },
+
+  {
+    es: "Ayuda",
+    en: "Help",
+  },
+];

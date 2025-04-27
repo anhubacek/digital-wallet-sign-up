@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "../components";
 import { StepOne } from "../components/sign-up/StepOne";
 import { StepTwo } from "../components/sign-up/StepTwo";
 import { StepThree } from "../components/sign-up/StepThree";
 
+import { useNavigate } from "react-router-dom";
 export interface ISignUpBody {
   email: string;
   name: string;
@@ -23,6 +24,7 @@ export interface ISignUpBody {
 }
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [body, setBody] = useState({
     email: "",
@@ -43,6 +45,12 @@ const SignUp = () => {
   });
 
   //  console.log("body", body);
+
+  useEffect(() => {
+    if (step === 4) {
+      navigate("/home");
+    }
+  }, [step]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
