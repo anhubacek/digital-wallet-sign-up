@@ -36,18 +36,24 @@ const Main = () => {
               </li>
             </ul>
           </nav>
-          <div className="flex flex-col items-center w-full md:w-[85%] md:h-[100%]">
+          <div className="flex flex-col justify-start w-full md:w-[85%] md:h-[100%]">
             <header className="w-full h-[12vh]  flex items-center justify-between px-4 py-2">
-              <div></div>
+              <div className="flex md:hidden scale-75 mt-4 ">
+                <h1
+                  className="font-[Manjari] font-bold bg-gradient-to-r from-[#bd00ff] to-[#8800ff] text-transparent bg-clip-text transition-all duration-ease-in-out text-3xl"
+                >
+                  MUBI
+                </h1>
+              </div>
               <div className="h-full flex items-center justify-center">
                 <img
                   src="/assets/images/user.png"
                   alt="user"
-                  className="w-[60px] rounded-full h-[60px] object-cover shadow-lg"
+                  className="w-[40px] h-[40px] md:w-[60px] rounded-full md:h-[60px] object-cover shadow-lg"
                 />
               </div>
             </header>
-            <main></main>
+            <main className="h-[88vh]"></main>
           </div>
         </div>
       </motion.div>
