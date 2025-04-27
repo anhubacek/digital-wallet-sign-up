@@ -48,6 +48,11 @@ export const StepOne = ({
       setFieldsWithErrors([...fieldsWithErrors, "email"]);
       return;
     }
+    if (body.email.toLowerCase() === "alreadytaken@gmail.com") {
+      setError("El correo electrónico ya se encuentra registrado");
+      setFieldsWithErrors([...fieldsWithErrors, "email"]);
+      return;
+    }
     if (validateEmail(body.email) && !validatePassword(body.password)) {
       setError(
         "La contraseña debe tener al menos 8 caracteres, una letra y un número"
@@ -62,7 +67,7 @@ export const StepOne = ({
       setTimeout(() => {
         setStep(2);
         setIsLoading(false);
-      }, 900);
+      }, 1000);
     }
   };
 

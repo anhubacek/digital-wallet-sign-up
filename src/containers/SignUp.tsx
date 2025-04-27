@@ -45,7 +45,6 @@ const SignUp = () => {
   });
   const [fieldsWithErrors, setFieldsWithErrors] = useState<string[]>([]);
 
-  //  console.log("body", body);
 
   useEffect(() => {
     if (step === 4) {
