@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ISignUpBody } from "../containers/SignUp";
 
 export const emailRegex = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/;
@@ -29,4 +30,18 @@ export const validateNonEmptyFields = (obj: Partial<ISignUpBody>) => {
       ? value.trim() !== ""
       : value !== null && value !== undefined
   );
+};
+
+
+export const getEmptyFields = (obj: Partial<ISignUpBody>): string[] => {
+    return Object.entries(obj)
+        .filter(([key, value]) => {
+            if (key === "phone" && typeof value === "string" && value.length < 8) {
+                return true;
+            }
+            return typeof value === "string"
+                ? value.trim() === ""
+                : value === null || value === undefined;
+        })
+        .map(([key]) => key);
 };

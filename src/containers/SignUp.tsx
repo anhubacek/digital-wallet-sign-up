@@ -45,7 +45,6 @@ const SignUp = () => {
   });
   const [fieldsWithErrors, setFieldsWithErrors] = useState<string[]>([]);
 
-
   useEffect(() => {
     if (step === 4) {
       navigate("/home");
@@ -89,6 +88,7 @@ const SignUp = () => {
             handleChange={handleInputChange}
             setStep={setStep}
             fieldsWithErrors={fieldsWithErrors}
+            setFieldsWithErrors={setFieldsWithErrors}
           />
         )}
         {step === 3 && (
