@@ -1,8 +1,15 @@
 import { motion } from "framer-motion";
 import { Logo } from "../components";
 import { navbarItems } from "../data/data";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
   return (
     <div className="bg-gradient-to-tr from-purple-500 to-indigo-500">
       <motion.div
@@ -30,7 +37,10 @@ const Main = () => {
               </div>
 
               <li className="flex items-center justify-center w-full transition duration-1000 mb-6">
-                <span className="text-md w-fit rounded-full px-4 py-2 transition duration-300 transition-colors cursor-pointer hover:text-purple-600 hover:bg-purple-100">
+                <span
+                  onClick={handleLogout}
+                  className="text-md w-fit rounded-full px-4 py-2 transition duration-300 transition-colors cursor-pointer hover:text-purple-600 hover:bg-purple-100"
+                >
                   Cerrar sesión
                 </span>
               </li>
@@ -40,9 +50,7 @@ const Main = () => {
             <header className="w-full h-[12vh]  flex items-center justify-between px-4 py-2">
               <div className="hidden md:flex"></div>
               <div className="flex md:hidden scale-75 mt-4 ">
-                <h1
-                  className="font-[Manjari] font-bold bg-gradient-to-r from-[#bd00ff] to-[#8800ff] text-transparent bg-clip-text transition-all duration-ease-in-out text-3xl"
-                >
+                <h1 className="font-[Manjari] font-bold bg-gradient-to-r from-[#bd00ff] to-[#8800ff] text-transparent bg-clip-text transition-all duration-ease-in-out text-3xl">
                   MUBI
                 </h1>
               </div>

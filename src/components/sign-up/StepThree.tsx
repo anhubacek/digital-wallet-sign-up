@@ -62,6 +62,15 @@ export const StepThree = ({
     });
   };
 
+  const saveMockedToken = () => {
+    const expirationTime = new Date().getTime() + 10 * 60 * 1000; // 10 minutes
+    const tokenData = {
+      token: "mockedToken",
+      expiresAt: expirationTime,
+    };
+    localStorage.setItem("authToken", JSON.stringify(tokenData));
+  };
+
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (!validateNonEmptyFields(stepFields)) {
@@ -73,6 +82,7 @@ export const StepThree = ({
       setTimeout(() => {
         setError(null);
         setFieldsWithErrors([]);
+        saveMockedToken();
         setStep(4);
         setIsLoading(false);
       }, 2000);
@@ -159,7 +169,7 @@ export const StepThree = ({
               value={body.governmentId}
               maxLength={
                 governmentIdsByCountry.find((doc) => doc.name === body.country)
-                  ?.length || 18
+                  ?.length || 10
               }
               fieldsWithErrors={fieldsWithErrors}
             />
