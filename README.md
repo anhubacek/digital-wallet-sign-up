@@ -32,7 +32,7 @@ This project was created in the context of a technical challenge.The main goal w
 ---
 
 ## 📸 Screenshots
-
+<div style="display: flex; flex-wrap: wrap;">
 <img src="./public/assets/images/readme/mobile-1.jpg" width="200" />
 <img src="./public/assets/images/readme/mobile-2.jpg" width="200" />
 <img src="./public/assets/images/readme/mobile-3.jpg" width="200" />
@@ -44,6 +44,8 @@ This project was created in the context of a technical challenge.The main goal w
 <img src="./public/assets/images/readme/mobile-10.jpg" width="200" />
 <img src="./public/assets/images/readme/Desktop-1.png" width="90%" />
 <img src="./public/assets/images/readme/Desktop-2.png" width="90%" />
+</div>
+
 
 ---
 
