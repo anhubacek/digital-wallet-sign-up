@@ -1,54 +1,78 @@
-# React + TypeScript + Vite
+# MUBI - Digital Wallet Sign Up
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome! This repository contains the code to create a fully validated and user-friendly registration process for a digital wallet application. Feel free to test it. Your information will not be stored once the process is complete.
+When the sign-up flow is finished, a mocked token will allow you to stay logged in for a few minutes.
 
-Currently, two official plugins are available:
+**Link to the deploy:**  https://mubi-digital-wallet-sign-up-anhubacek.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Project Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project was created in the context of a technical challenge.The main goal was to create a "uniquely flavored user experience". Designing, implementing and delivering a usable demo of a sign-up flow. So I focused on:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Brand**: Create a brand (MUBI) and logo so I could base the application colors on it
+- **User Experience**: Modern and friendly design with visual effects.
+- **Form Validation**: Ensuring data integrity and user input accuracy.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Technologies 
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- React + Vite
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+
+- React International Phone
+- Geonames
+- MUI Date Pickers
+
+---
+
+## 📸 Screenshots
+
+<img src="./public/assets/images/readme/mobile-1.jpg" width="200" />
+<img src="./public/assets/images/readme/mobile-2.jpg" width="200" />
+<img src="./public/assets/images/readme/mobile-3.jpg" width="200" />
+<img src="./public/assets/images/readme/mobile-4.jpg" width="200" />
+<img src="./public/assets/images/readme/mobile-5.jpg" width="200" />
+<img src="./public/assets/images/readme/mobile-6.jpg" width="200" />
+<img src="./public/assets/images/readme/mobile-8.jpg" width="200" />
+<img src="./public/assets/images/readme/mobile-9.jpg" width="200" />
+<img src="./public/assets/images/readme/mobile-10.jpg" width="200" />
+<img src="./public/assets/images/readme/Desktop-1.png" width="90%" />
+<img src="./public/assets/images/readme/Desktop-2.png" width="90%" />
+
+---
+
+## 📝 How to Use
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/anhubacek/digital-wallet-sign-up.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd digital-wallet-sign-up
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 📧 Contact
+
+If you have any feedback or comments, feel free to reach out:
+
+- **Email**: hubacekk@gmail.com
+- **Linkedin**: https://www.linkedin.com/in/andreahubacek/
+
+---
