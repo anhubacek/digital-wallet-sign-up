@@ -85,10 +85,10 @@ const Main = () => {
         </div>
         {mobileMenuOpen && (
           <div
-            className="fixed top-0 right-0 w-[60%] h-screen z-50 flex items-center flex-col justify-center bg-gradient-to-l 
+            className="fixed top-0 right-0 w-[60%] h-[100%] z-50 flex items-center flex-col justify-center bg-gradient-to-l 
         from-purple-100 to-purple-100 "
           >
-            <ul className=" w-full p-6 flex flex-col justify-between h-full mt-20">
+            <ul className=" w-full p-6 flex flex-col justify-between h-[85vh] mt-20">
               <div className="space-y-4">
                 {navbarItems.map((item) => (
                   <li
