@@ -66,7 +66,7 @@ export const StepTwo = ({
         setFieldsWithErrors([]);
         setStep(3);
         setIsLoading(false);
-      }, 1000);
+      }, 1200);
     }
   };
 

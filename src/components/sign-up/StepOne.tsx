@@ -67,7 +67,7 @@ export const StepOne = ({
       setTimeout(() => {
         setStep(2);
         setIsLoading(false);
-      }, 1000);
+      }, 1200);
     }
   };
 

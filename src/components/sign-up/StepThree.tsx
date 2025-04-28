@@ -11,6 +11,8 @@ import { Loader } from "../Loader";
 import { governmentIdsByCountry } from "../../data/data";
 import {
   getEmptyFields,
+  hasMoreThanEighteenYears,
+  hasMoreThanNinetyNineYears,
   validateNonEmptyFields,
 } from "../../utils/validations";
 
@@ -77,7 +79,44 @@ export const StepThree = ({
       setError("Por favor completa los campos para continuar");
       setFieldsWithErrors(getEmptyFields(stepFields));
       return;
+    }
+    if (
+      body.governmentId?.length <
+      (governmentIdsByCountry.find((doc) => doc.name === body.country)
+        ?.length || 6)
+    ) {
+      setError(`El número de identificación no es válido`);
+      setFieldsWithErrors([...fieldsWithErrors, "governmentId"]);
+      return;
     } else {
+      setFieldsWithErrors(
+        fieldsWithErrors.filter((field) => field !== "governmentId")
+      );
+    }
+    if (
+      !hasMoreThanEighteenYears(
+        dateOfBirth,
+        eighteenYearsAgo.toLocaleDateString()
+      )
+    ) {
+      setError("Debes ser mayor de 18 años para registrarte");
+      setFieldsWithErrors([...fieldsWithErrors, "dateOfBirth"]);
+      return;
+    } else {
+      setFieldsWithErrors(
+        fieldsWithErrors.filter((field) => field !== "dateOfBirth")
+      );
+    }
+    if (hasMoreThanNinetyNineYears(dateOfBirth)) {
+      setError("La fecha de nacimiento no puede ser mayor a 99 años");
+      setFieldsWithErrors([...fieldsWithErrors, "dateOfBirth"]);
+      return;
+    } else {
+      setFieldsWithErrors(
+        fieldsWithErrors.filter((field) => field !== "dateOfBirth")
+      );
+    }
+    if (!getEmptyFields(stepFields).length) {
       setIsLoading(true);
       setTimeout(() => {
         setError(null);
@@ -135,6 +174,10 @@ export const StepThree = ({
                 ref={pickerRef}
                 onChange={handleBirthDate}
                 maxDate={dayjs(eighteenYearsAgo)}
+                minDate={dayjs(eighteenYearsAgo).subtract(100, "year")}
+                onError={() => {
+                  setFieldsWithErrors([...fieldsWithErrors, "dateOfBirth"]);
+                }}
                 className="date-picker"
                 format="DD/MM/YYYY"
                 slotProps={{
@@ -161,7 +204,12 @@ export const StepThree = ({
                   )?.regex || /^[0-9]+$/;
                 if (!regex?.test(e.target.value)) {
                   e.preventDefault();
+                  setFieldsWithErrors([...fieldsWithErrors, "governmentId"]);
                   return;
+                } else {
+                  setFieldsWithErrors(
+                    fieldsWithErrors.filter((field) => field !== "governmentId")
+                  );
                 }
 
                 handleChange(e);
