@@ -10,8 +10,21 @@ const Navigation = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
 
+  const isTokenExpired = (token: string | null): boolean => {
+    if (!token) return true;
+    const { expiresAt } = JSON.parse(token);
+    return Date.now() > expiresAt;
+  };
+
+  if (isTokenExpired(token)) {
+    localStorage.removeItem("authToken");
+  }
+
   useEffect(() => {
     if (!token) {
+      navigate("/");
+    } else if (isTokenExpired(token)) {
+      localStorage.removeItem("authToken");
       navigate("/");
     } else {
       navigate("/home");

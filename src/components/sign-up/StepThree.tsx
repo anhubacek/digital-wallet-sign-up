@@ -65,7 +65,7 @@ export const StepThree = ({
   };
 
   const saveMockedToken = () => {
-    const expirationTime = new Date().getTime() + 10 * 60 * 1000; // 10 minutes
+    const expirationTime = new Date().getTime() + 5 * 60 * 1000; // 5 minutes
     const tokenData = {
       token: "mockedToken",
       expiresAt: expirationTime,
