@@ -68,8 +68,12 @@ const SignUp = () => {
     >
       <div
         className={`flex flex-col items-center px-6 md:px-10 py-8 rounded-2xl shadow-lg w-[90%] ${
-          step === 2 ? "md:w-160" : "md:w-120"
-        }  bg-white space-y-4`}
+          step === 1
+            ? "min-h-[533px]"
+            : step === 2
+            ? "min-h-[710px]"
+            : "min-h-[490px]"
+        }  ${step === 2 ? "md:w-160" : "md:w-120"}  bg-white space-y-4`}
       >
         <Logo size="small" className="" />
         {step === 1 && (

@@ -71,7 +71,7 @@ export const StepTwo = ({
   };
 
   return (
-    <div className="flex flex-col items-center w-full md:min-h-[450px] ">
+    <div className="flex flex-col items-center w-full md:min-h-[450px] justify-between ">
       <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[100%] ">
         ¡Ya falta poco! 🌟 <br /> Sólo necesitamos algunos datos para terminar
         de abrir tu cuenta.
@@ -93,7 +93,7 @@ export const StepTwo = ({
               />
               <label className="mb-1">Teléfono</label>
               <PhoneInput
-                className={`mb-2 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent ${
+                className={`mb-5 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent ${
                   fieldsWithErrors?.includes("phone") &&
                   "border-red-500 focus:ring-red-500 focus:border-red-500"
                 }`}
@@ -274,10 +274,12 @@ export const StepTwo = ({
               />
             </div>
           </div>
-          {error && (
-            <p className="text-red-500 text-sm mb-3 text-center w-[100%]">
+          {error ? (
+            <p className={`text-red-500 text-sm mb-3 text-center w-[100%]`}>
               {error}
             </p>
+          ) : (
+            <div className="h-[20px] mb-3" />
           )}
           <Button
             onClick={handleNextStep}

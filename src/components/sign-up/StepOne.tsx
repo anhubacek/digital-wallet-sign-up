@@ -72,7 +72,7 @@ export const StepOne = ({
   };
 
   return (
-    <div className="flex flex-col items-center w-full min-h-[320px]">
+    <div className="flex flex-col items-center w-full ">
       <h3 className="relative text-lg text-[#4d4d4d] text-center md:w-[80%] ">
         Estás a un paso de hacer tu vida más simple con{" "}
         <span className="text-yellow-500"> MUBI</span>🌟
@@ -107,10 +107,12 @@ export const StepOne = ({
               fieldsWithErrors={fieldsWithErrors}
             />
           </div>
-          {error && (
-            <p className="text-red-500 text-sm mb-3 text-center w-[100%]">
+          {error ? (
+            <p className={`text-red-500 text-sm mb-3 text-center w-[100%]`}>
               {error}
             </p>
+          ) : (
+            <div className="h-[20px] mb-3" />
           )}
           <Button
             onClick={handleNextStep}
