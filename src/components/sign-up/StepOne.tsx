@@ -84,7 +84,7 @@ export const StepOne = ({
         </div>
       ) : (
         <>
-          <div className="flex flex-col w-full space-y-2 my-4">
+          <div className="flex flex-col w-full space-y-2  mt-4 md:my-4">
             <label className="mb-1">Correo electrónico</label>
             <Input
               name="email"
@@ -112,7 +112,7 @@ export const StepOne = ({
               {error}
             </p>
           ) : (
-            <div className="h-[20px] mb-3" />
+            <div className=" h-[40px] md:h-[20px] mb-3" />
           )}
           <Button
             onClick={handleNextStep}
