@@ -93,7 +93,7 @@ export const StepTwo = ({
               />
               <label className="mb-1">Teléfono</label>
               <PhoneInput
-                className={`mb-5 py-1 px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent ${
+                className={`mb-5 py-1 h-[38px] px-5 border border-gray-300 rounded-[30px] w-full bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent ${
                   fieldsWithErrors?.includes("phone") &&
                   "border-red-500 focus:ring-red-500 focus:border-red-500"
                 }`}

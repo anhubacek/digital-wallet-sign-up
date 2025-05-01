@@ -70,7 +70,7 @@ export const GeoLocation = ({ geoId, onChange, isCountry, isCity, name, fieldsWi
       onChange={handleChange}
       sx={{
         borderRadius: "30px",
-        height: "38px",
+        height: "32px",
         marginBottom: "20px",
         marginTop: "4px",
         "& .MuiOutlinedInput-notchedOutline": {

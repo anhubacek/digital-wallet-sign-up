@@ -197,6 +197,7 @@ export const StepThree = ({
             </label>
             <Input
               name="governmentId"
+              style={{ height: "40px" }}
               onChange={(e) => {
                 const regex =
                   governmentIdsByCountry.find(

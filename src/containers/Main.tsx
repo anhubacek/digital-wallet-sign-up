@@ -15,7 +15,7 @@ const Main = () => {
     navigate("/");
   };
   return (
-    <div className="bg-gradient-to-tr from-purple-500 to-indigo-500">
+    <div className="bg-gradient-to-tr from-purple-400 to-indigo-400">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -23,11 +23,11 @@ const Main = () => {
       >
         <div
           className="w-full flex h-screen items-center justify-center bg-gradient-to-l 
-        from-purple-300 to-purple-100"
+        from-purple-200 to-purple-50"
         >
           <nav
             className="hidden md:flex md:flex-col md:w-[20%] md:h-[100%] bg-gradient-to-b 
-        from-purple-100 to-purple-300"
+        from-purple-50 to-purple-200"
           >
             <Logo size="small" className="items-left w-fit p-7" />
 
