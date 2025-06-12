@@ -9,8 +9,6 @@ When the sign-up flow is finished, a mocked token will allow you to stay logged 
 
 ## 🚀 Project Overview
 
-This project was created in the context of a technical challenge.The main goal was to create a "uniquely flavored user experience". Designing, implementing and delivering a usable demo of a sign-up flow. So I focused on:
-
 - **Brand**: Create a brand (MUBI) and logo so I could base the application colors on it
 - **User Experience**: Modern and friendly design with visual effects.
 - **Form Validation**: Ensuring data integrity and user input accuracy.
